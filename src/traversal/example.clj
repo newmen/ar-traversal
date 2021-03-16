@@ -41,7 +41,9 @@
    #{s} (conj (clojure.lang.PersistentQueue/EMPTY) s)))
 
 (comment
+  
   (traverse-graph-dfs G :1) ; => [:1 :3 :4 :2]
   (seq-graph-dfs G :1) ; => (:1 :3 :4 :2)
   (seq-graph-bfs G :1) ; => (:1 :2 :3 :4)
+  
   )
