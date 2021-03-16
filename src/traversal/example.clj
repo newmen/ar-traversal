@@ -1,8 +1,8 @@
 (ns traversal.example)
 
-(def G {:1 [:2 :3]
-        :2 [:4]
-        :3 [:4]
+(def G {:1 [[:2 1] [:3 2]]
+        :2 [[:4 4]]
+        :3 [[:4 2]]
         :4 []})
 
 (defn traverse-graph-dfs [g s]
@@ -10,7 +10,7 @@
     (if (empty? frontier)
       vertices
       (let [v (peek frontier)
-            neighbors (g v)]
+            neighbors (map first (g v))]
         (recur
          (conj vertices v)
          (into explored neighbors)
@@ -22,7 +22,7 @@
       (if (empty? frontier)
         nil
         (let [v (peek frontier)
-              neighbors (g v)]
+              neighbors (map first (g v))]
           (cons v (rec-dfs
                    (into explored neighbors)
                    (into (pop frontier) (remove explored neighbors))))))))
@@ -34,7 +34,7 @@
       (if (empty? frontier)
         nil
         (let [v (peek frontier)
-              neighbors (g v)]
+              neighbors (map first (g v))]
           (cons v (rec-bfs
                    (into explored neighbors)
                    (into (pop frontier) (remove explored neighbors))))))))
