@@ -2,9 +2,8 @@
 
 (defn make-vertices
   [n]
-  (shuffle
-   (map (comp keyword str)
-        (range n))))
+  (map (comp keyword str)
+       (range n)))
 
 (defn add-edge
   ([wf graph [from to]]
@@ -18,8 +17,8 @@
     (reduce (partial add-edge wf) {} pairs)))
 
 (defn fill-graph
-  [wf rf n s]
-  (let [vertices (make-vertices n)
+  [vf wf rf n s]
+  (let [vertices (vf (make-vertices n))
         t (dec n)]
     (loop [i (- s t)
            vs vertices
@@ -52,6 +51,7 @@
       (or (< s t)
           (> s (* n t))) (error "Incorrect sparseness " s
                                 " of graph with " n " vertices")
-      :else (fill-graph #(rand-int 100)
+      :else (fill-graph shuffle
+                        #(rand-int 100)
                         rand-nth
                         n s))))

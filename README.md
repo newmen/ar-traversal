@@ -21,10 +21,10 @@ Below an example of usage:
                (first (keys random-graph))
                (last (keys random-graph))) ;; => (:4 :3 :2)
 
-(distance/get-eccentricity random-graph
-                           (first (keys random-graph))) ;; => 102
+(get-eccentricity random-graph
+                  (first (keys random-graph))) ;; => 102
 
-(distance/get-radius random-graph) ;; => 79
+(get-radius random-graph) ;; => 79
 
-(distance/get-diameter random-graph) ;; => 117
+(get-diameter random-graph) ;; => 117
 ```
