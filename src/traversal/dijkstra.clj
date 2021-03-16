@@ -1,9 +1,12 @@
 (ns traversal.dijkstra
   (:require [traversal.utils :refer [get-vertices]]))
 
+(def max-value
+  Integer/MAX_VALUE)
+
 (defn- init-path
   [start v]
-  [v [[start Integer/MAX_VALUE]]])
+  [v [[start max-value]]])
 
 (defn- sum-path
   [path]
@@ -45,3 +48,11 @@
           (map (fn [[v path]]
                  [v (sum-path path)])
                shorts))))
+(comment
+
+  (dijkstra {:a [[:b 100] [:e 50] [:d 30]]
+             :b [[:c 20]]
+             :d [[:e 10]]
+             :e [[:c 5]]} :b)
+  
+  )
