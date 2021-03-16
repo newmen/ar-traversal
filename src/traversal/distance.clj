@@ -13,7 +13,7 @@
   [f graph]
   (->> (get-vertices graph)
        (map (partial get-eccentricity graph))
-      ;;  (remove #{0}) ;; must i filter it here for the radius searching? :)
+      ;;  (remove #{0}) ;; must i filter it for the radius searching? :)
        (apply f)))
 
 (def get-radius

@@ -2,8 +2,9 @@
 
 (defn make-vertices
   [n]
-  (map (comp keyword str)
-       (range n)))
+  (shuffle
+   (map (comp keyword str)
+        (range n))))
 
 (defn add-edge
   ([wf graph [from to]]

@@ -3,19 +3,19 @@
             [traversal.dijkstra :refer :all]
             [traversal.fixtures.graph :refer [graph]]))
 
-(deftest find-shorts-test
+(deftest find-shortests-test
   (testing "Result has paths"
     (is (= {:a [[:a 0]]
             :b [[:a 0] [:b 100]]
             :c [[:a 0] [:d 30] [:e 10] [:c 5]]
             :d [[:a 0] [:d 30]]
             :e [[:a 0] [:d 30] [:e 10]]}
-           (find-shorts graph :a)))))
+           (find-shortests graph :a)))))
 
-(deftest find-short-test
+(deftest find-shortest-test
   (testing "Result is a shortest path"
     (is (= [:a :d :e :c]
-           (vec (find-short graph :a :c))))))
+           (vec (find-shortest graph :a :c))))))
 
 (deftest dijkstra-test
   (testing "Result has just weights"

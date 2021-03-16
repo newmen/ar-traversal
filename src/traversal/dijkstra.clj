@@ -12,7 +12,7 @@
   [path]
   (apply + (map last path)))
 
-(defn find-shorts
+(defn find-shortests
   [graph start]
   (let [vertices (get-vertices graph)
         paths (-> (into {} (map (partial init-path start) vertices))
@@ -34,25 +34,17 @@
                                   [vi pi])))
                             ps))))))))
 
-(defn find-short
+(defn find-shortest
   [graph start end]
-  (let [shorts (find-shorts graph start)]
+  (let [shorts (find-shortests graph start)]
     (if-let [path (end shorts)]
       (map first path)
       :no-path)))
 
 (defn dijkstra
   [graph start]
-  (let [shorts (find-shorts graph start)]
+  (let [shorts (find-shortests graph start)]
     (into {}
           (map (fn [[v path]]
                  [v (sum-path path)])
                shorts))))
-(comment
-
-  (dijkstra {:a [[:b 100] [:e 50] [:d 30]]
-             :b [[:c 20]]
-             :d [[:e 10]]
-             :e [[:c 5]]} :b)
-  
-  )
