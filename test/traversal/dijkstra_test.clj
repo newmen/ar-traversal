@@ -15,7 +15,14 @@
 (deftest find-shortest-test
   (testing "Result is a shortest path"
     (is (= [:a :d :e :c]
-           (vec (find-shortest graph :a :c))))))
+           (vec (find-shortest graph :a :c)))))
+  (testing "No way"
+    (is (= :no-path
+           (find-shortest graph :c :a)))
+    (is (= :no-path
+           (find-shortest graph :x :a)))
+    (is (= :no-path
+           (find-shortest graph :a :x)))))
 
 (deftest dijkstra-test
   (testing "Result has just weights"

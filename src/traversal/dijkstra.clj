@@ -36,8 +36,10 @@
 
 (defn find-shortest
   [graph start end]
-  (let [shorts (find-shortests graph start)]
-    (if-let [path (end shorts)]
+  (let [shorts (find-shortests graph start)
+        path (end shorts)]
+    (if (and path
+             (< 2 (count path)))
       (map first path)
       :no-path)))
 
